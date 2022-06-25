@@ -18,25 +18,15 @@ namespace Enigma.Scramblers
             Offset = 0;
         }
 
-
         public bool StepWheel()
         {
-            if(Offset > 13)
+            if(Offset >= 13)
             {
                 Offset = 0;
                 return false;
             }
             Offset++;
             return true;
-        }
-
-
-        private void CheckOffset()
-        {
-            if(Offset > 13)
-            {
-                Offset = 0;
-            }
         }
 
         public void ResetOffset()
@@ -59,13 +49,6 @@ namespace Enigma.Scramblers
 
         public char Scramble(char a)
         {
-            if(a == ' ')
-            {
-                return ' ';
-            }
-
-            CheckOffset();
-
             var character = CharList.Where(item => item.FirstCharacter == a || item.SecondCharacter == a).First();
 
             int listPosition = FindPosition(character);
@@ -86,14 +69,6 @@ namespace Enigma.Scramblers
 
         public char Descramble(char a)
         {
-            if( a == ' ')
-            {
-                return ' ';
-            }
-
-
-            CheckOffset();
-
             var character = CharList.Where(item => item.FirstCharacter == a || item.SecondCharacter == a).First();
 
             int listPosition = FindPosition(character);

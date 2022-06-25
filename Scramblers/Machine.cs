@@ -36,44 +36,64 @@ namespace Enigma.Scramblers
             }
         }
 
+        private char Scramble(char a)
+        {
+            if(a == ' ')
+            {
+                return ' ';
+            }
+
+            char store = a;
+
+            foreach(var wheel in Wheels)
+            {
+                store = wheel.Scramble(store);
+            }
+
+            SpinWheels();
+
+            return store;
+        }
+
+        private char Descramble(char a)
+        {
+            if (a == ' ')
+            {
+                return ' ';
+            }
+
+            char store = a;
+
+            foreach(var wheel in Wheels)
+            {
+                store = wheel.Descramble(store);
+            }
+
+            SpinWheels();
+
+            return store;
+        }
+
         public string Encode(string sentance)
         {
             ResetWheels();
 
-            var output = new StringBuilder();
-
             var sanitizedInput = sentance.ToLower().ToCharArray();
 
-            foreach (char character in sanitizedInput)
-            {
-                output = output.Append(Wheels[0].Scramble(character));
-                if(character != ' ')
-                {
-                    SpinWheels();
-                }
-            }
+            var output = sanitizedInput.Select(a => Scramble(a)).ToArray();
 
-            return output.ToString();
+            return new string(output);
         }
 
         public string Decode(string sentance)
         {
             ResetWheels();
 
-            var output = new StringBuilder();
-
             var sanitizedInput = sentance.ToLower().ToCharArray();
 
-            foreach(char character in sanitizedInput)
-            {
-                output = output.Append(Wheels[0].Descramble(character));
-                if(character != ' ')
-                {
-                    SpinWheels();
-                }
-            }
+            var output = sanitizedInput.Select(a => Descramble(a)).ToArray();
 
-            return output.ToString();
+            return new string(output);
         }
 
     }
