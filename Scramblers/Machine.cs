@@ -42,7 +42,6 @@ namespace Enigma.Scramblers
             {
                 return ' ';
             }
-
             char store = a;
 
             foreach(var wheel in Wheels)
@@ -64,9 +63,9 @@ namespace Enigma.Scramblers
 
             char store = a;
 
-            foreach(var wheel in Wheels)
+            for(int i = Wheels.Length - 1; i >= 0; i--)
             {
-                store = wheel.Descramble(store);
+                store = Wheels[i].Descramble(store);
             }
 
             SpinWheels();

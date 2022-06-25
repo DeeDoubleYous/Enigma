@@ -1,7 +1,7 @@
 ﻿using Enigma.Scramblers;
 using Enigma.Models;
 
-CharacterModel[] setting =
+CharacterModel[] firstSetting =
 {
     new CharacterModel('a', 'z'),
     new CharacterModel('b', 'y'),
@@ -18,9 +18,26 @@ CharacterModel[] setting =
     new CharacterModel('m', 'n')
 };
 
-Wheel[] wheel = { new Wheel(setting), new Wheel(setting), new Wheel(setting) };
+CharacterModel[] secondSettings =
+{
+    new CharacterModel('a', 'f'),
+    new CharacterModel('o', 'y'),
+    new CharacterModel('u', 'i'),
+    new CharacterModel('p', 'd'),
+    new CharacterModel('e', 'q'),
+    new CharacterModel('b', 'c'),
+    new CharacterModel('m', 'z'),
+    new CharacterModel('x', 'g'),
+    new CharacterModel('j', 'h'),
+    new CharacterModel('k', 'v'),
+    new CharacterModel('l', 'n'),
+    new CharacterModel('r', 't'),
+    new CharacterModel('s', 'w')
+};
+
+Wheel[] wheel = { new Wheel(firstSetting), new Wheel(secondSettings) };
 
 var machine = new Machine(wheel);
 
 Console.WriteLine(machine.Encode("This is the dawning of the age of aquarious"));
-Console.WriteLine(machine.Decode("grpk nm myn npblrar bq lzo rxy jv zkhwmzemc"));
+Console.WriteLine(machine.Decode("xtdv lz zol ldcntgf yw nrq fux pa rvuptdxti"));

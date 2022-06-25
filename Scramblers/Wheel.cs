@@ -20,7 +20,7 @@ namespace Enigma.Scramblers
 
         public bool StepWheel()
         {
-            if(Offset >= 13)
+            if(Offset == CharList.Length)
             {
                 Offset = 0;
                 return false;
@@ -54,7 +54,7 @@ namespace Enigma.Scramblers
             int listPosition = FindPosition(character);
             int returnPosition = 0;
 
-            if(listPosition + Offset >= 13)
+            if(listPosition + Offset >= CharList.Length)
             {
                 returnPosition = (listPosition + Offset) - CharList.Length;
             }
