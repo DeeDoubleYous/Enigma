@@ -28,7 +28,7 @@ namespace Enigma.Scramblers
             Offset = 0;
         }
 
-        private int FindPosition(char a, CharacterModel character)
+        private int FindPosition(CharacterModel character)
         {
             for (var i = 0; i < CharList.Length; i++)
             {
@@ -52,7 +52,7 @@ namespace Enigma.Scramblers
 
             var character = CharList.Where(item => item.FirstCharacter == a || item.SecondCharacter == a).First();
 
-            int listPosition = FindPosition(a, character);
+            int listPosition = FindPosition(character);
             int returnPosition = 0;
 
             if(listPosition + Offset >= 13)
@@ -81,7 +81,7 @@ namespace Enigma.Scramblers
 
             var character = CharList.Where(item => item.FirstCharacter == a || item.SecondCharacter == a).First();
 
-            int listPosition = FindPosition(a, character);
+            int listPosition = FindPosition(character);
             int returnPosition = 0;
 
             if(listPosition - Offset < 0)
