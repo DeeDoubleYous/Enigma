@@ -17,10 +17,28 @@ namespace Enigma.Scramblers
             this.Wheels = Wheels;
         }
 
+        private void ResetWheels()
+        {
+            foreach(var wheel in Wheels)
+            {
+                wheel.ResetOffset();
+            }
+        }
+
+        private void SpinWheels()
+        {
+            foreach(var wheel in Wheels)
+            {
+                if (wheel.StepWheel())
+                {
+                    break;
+                }
+            }
+        }
 
         public string Encode(string sentance)
         {
-            Wheels[0].ResetOffset();
+            ResetWheels();
 
             var output = new StringBuilder();
 
@@ -29,6 +47,10 @@ namespace Enigma.Scramblers
             foreach (char character in sanitizedInput)
             {
                 output = output.Append(Wheels[0].Scramble(character));
+                if(character != ' ')
+                {
+                    SpinWheels();
+                }
             }
 
             return output.ToString();
@@ -36,7 +58,7 @@ namespace Enigma.Scramblers
 
         public string Decode(string sentance)
         {
-            Wheels[0].ResetOffset();
+            ResetWheels();
 
             var output = new StringBuilder();
 
@@ -45,6 +67,10 @@ namespace Enigma.Scramblers
             foreach(char character in sanitizedInput)
             {
                 output = output.Append(Wheels[0].Descramble(character));
+                if(character != ' ')
+                {
+                    SpinWheels();
+                }
             }
 
             return output.ToString();

@@ -24,10 +24,10 @@ namespace Enigma.Scramblers
             if(Offset > 13)
             {
                 Offset = 0;
-                return true;
+                return false;
             }
             Offset++;
-            return false;
+            return true;
         }
 
 
@@ -80,7 +80,6 @@ namespace Enigma.Scramblers
                 returnPosition = listPosition + Offset;
             }
 
-            Offset++;
 
             return a == character.FirstCharacter ? CharList[returnPosition].SecondCharacter : CharList[returnPosition].FirstCharacter;
         }
@@ -108,8 +107,6 @@ namespace Enigma.Scramblers
             {
                 returnPosition = listPosition - Offset;
             }
-
-            Offset++;
             return a == character.FirstCharacter ? CharList[returnPosition].SecondCharacter : CharList[returnPosition].FirstCharacter;
         }
     }
