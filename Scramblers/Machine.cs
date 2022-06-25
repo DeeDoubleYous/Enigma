@@ -9,17 +9,18 @@ namespace Enigma.Scramblers
     public class Machine
     {
 
-        private Wheel Wheel1;
+        private Wheel[] Wheels;
 
 
-        public Machine(Wheel Wheel1)
+        public Machine(Wheel[] Wheels)
         {
-            this.Wheel1 = Wheel1;
+            this.Wheels = Wheels;
         }
+
 
         public string Encode(string sentance)
         {
-            Wheel1.ResetOffset();
+            Wheels[0].ResetOffset();
 
             var output = new StringBuilder();
 
@@ -27,7 +28,7 @@ namespace Enigma.Scramblers
 
             foreach (char character in sanitizedInput)
             {
-                output = output.Append(Wheel1.Scramble(character));
+                output = output.Append(Wheels[0].Scramble(character));
             }
 
             return output.ToString();
@@ -35,7 +36,7 @@ namespace Enigma.Scramblers
 
         public string Decode(string sentance)
         {
-            Wheel1.ResetOffset();
+            Wheels[0].ResetOffset();
 
             var output = new StringBuilder();
 
@@ -43,7 +44,7 @@ namespace Enigma.Scramblers
 
             foreach(char character in sanitizedInput)
             {
-                output = output.Append(Wheel1.Descramble(character));
+                output = output.Append(Wheels[0].Descramble(character));
             }
 
             return output.ToString();

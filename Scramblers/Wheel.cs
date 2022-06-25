@@ -7,11 +7,27 @@ namespace Enigma.Scramblers
 
         CharacterModel[] CharList;
 
-        int Offset = 0;
+        public int Offset
+        {
+            get; private set;
+        }
 
         public Wheel(CharacterModel[] CharList)
         {
             this.CharList = CharList;
+            Offset = 0;
+        }
+
+
+        public bool StepWheel()
+        {
+            if(Offset > 13)
+            {
+                Offset = 0;
+                return true;
+            }
+            Offset++;
+            return false;
         }
 
 

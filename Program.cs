@@ -18,9 +18,9 @@ CharacterModel[] setting =
     new CharacterModel('m', 'n')
 };
 
-var wheel = new Wheel(setting);
+Wheel[] wheel = { new Wheel(setting) };
 
 var machine = new Machine(wheel);
 
-Console.WriteLine(machine.Encode("Hello World"));
-Console.WriteLine(machine.Decode("suzyc iectn"));
+Console.WriteLine(machine.Encode("This is the dawning of the age of aquarious"));
+Console.WriteLine(machine.Decode("grpk nm myn npblrms ar knp syz iw njfykocka"));
